@@ -1,4 +1,5 @@
 import numpy as np
+from termcolor import colored, cprint
 import random
 
 word_bank = np.loadtxt("valid-wordle-words.txt", dtype=str) 
@@ -17,6 +18,18 @@ def isvalid(guess):
     elif not inBank:
         print("Guess invalid: word not in bank")
     return False
+
+def printoutput(guess,output):
+    for letter, out in zip(guess,output):
+        if out == "r":
+            color = "red"
+        elif out == "g":
+            color = "green"
+        else:
+            color = "yellow"
+        text = colored(letter, color)
+        print(text,end="")
+    print()
 
 def evaluate(guess, answer):
     out = list("rrrrr")
@@ -50,7 +63,7 @@ while count<7 and output!=list("ggggg"):
     guess = list(input(f"Guess #{count}:\n"))
     if isvalid(guess):
         output = evaluate(guess,answer)
-        print("".join(output))
+        printoutput(guess, output)
         count+=1
 
     if output==list("ggggg"):
