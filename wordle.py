@@ -57,7 +57,12 @@ answer = list(random.choice(word_bank))
 output = list("rrrrr")
 count = 1
 
-print("Rules: Guess a 5-letter word.\ng - correct letter, corect spot \ny - correct letter, incorrect spot \nr - incorrect letter\n")
+green = colored("green", "green")
+
+print("\nRules: Guess a 5-letter word within 6 turns.")
+print(f'{colored("green", "green")}- correct letter, corect spot')
+print(f'{colored("yellow", "yellow")} - correct letter, incorrect spot')
+print(f'{colored("red", "red")} - incorrect letter\n')
 
 while count<7 and output!=list("ggggg"):
     guess = list(input(f"Guess #{count}:\n"))
