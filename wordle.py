@@ -57,5 +57,5 @@ while count<7 and output!=list("ggggg"):
         print("Correct, you win!")
 
 if count == 7:
-    print(f"Too bad, you lost! The word was {"".join(answer)}")
+    print(f'Too bad, you lost! The word was {"".join(answer)}')
 
