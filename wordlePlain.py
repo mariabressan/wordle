@@ -1,11 +1,11 @@
 import numpy as np
 import random
 
-word_bank = np.loadtxt("valid-wordle-words.txt", dtype=str) 
+wordBank = np.loadtxt("valid-wordle-words.txt", dtype=str) 
 
 def isvalid(guess):
     lenOK = len(guess)==5
-    inBank =  "".join(guess) in word_bank
+    inBank =  "".join(guess) in wordBank
     lowercaseWord = "".join(guess).islower()
     if lenOK and inBank and lowercaseWord:
         return True
@@ -40,7 +40,7 @@ def evaluate(guess, answer):
                     out[i] = "y"
     return out
 
-answer = list(random.choice(word_bank))
+answer = list(random.choice(wordBank))
 output = list("rrrrr")
 count = 1
 
