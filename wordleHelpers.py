@@ -1,6 +1,7 @@
 from termcolor import colored
 
 colorStrengthDict = {"white":0,"red":1,"yellow":2,"green":3}
+alphabet = list("qwertyuiopasdfghjklzxcvbnm")
 
 # MISC
 def mkList(content,length):
@@ -109,3 +110,22 @@ def loosePrint(answer):
 ░░░██║░░░╚█████╔╝╚██████╔╝  ███████╗╚█████╔╝╚█████╔╝██████╔╝███████╗  ██╗░╚██╗
 ░░░╚═╝░░░░╚════╝░░╚═════╝░  ╚══════╝░╚════╝░░╚════╝░╚═════╝░╚══════╝  ╚═╝░░╚═╝
           ''')
+    
+# NN Helpers
+
+def updateXsample(X_sample,guess,output):
+    # 0 - no info
+    # 1 - red
+    # 2 - yellow
+    # 3 - green
+    for i,[letter,color] in enumerate(zip(guess,output)):
+        index = alphabet.index(letter)
+        if color=="green":
+            X_sample[0][index][i]=3
+        elif color=="red":
+            X_sample[0][index][i]=1
+        elif color=="yellow" and X_sample[0][index][i]!=1:
+            X_sample[0][index][i]=2
+        elif color!="yellow":
+            print(f"Error: color not found in updateXsample: {color}")
+    return X_sample
