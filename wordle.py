@@ -3,11 +3,11 @@ import numpy as np
 
 from wordleHelpers import *
 
-wordBank = np.loadtxt("dicts/validWordleWords.txt", dtype=str) 
+wordLength, numTurns = 5, 6
+wordBank = np.loadtxt(f"dicts/scrabble{wordLength}LetterWords.txt", dtype=str) 
+possibleWords = wordBank
 alphabet = list("qwertyuiopasdfghjklzxcvbnm")
 alphabetKey = mkList("white",26)
-wordLength = 5
-numTurns = 6
 allOutputs = []
 
 answer = list(random.choice(wordBank))
@@ -20,14 +20,22 @@ print(f'{colored("yellow", "yellow")} - correct letter, incorrect spot')
 print(f'{colored("red", "red")} - incorrect letter\n')
 
 while count<numTurns+1 and output!=mkList("green",wordLength):
-    guess = list(input(f"Guess #{count}:\n"))
-    if isvalid(guess,wordBank):
-        output = evaluate(guess,answer,wordLength)
+    print('answer: ', answer)
+    guess = list(input(f"Guess #{count}: ").lower())
+    if isvalid(guess,wordBank,wordLength):
+        output = evaluate(guess,answer)
         allOutputs.append([guess,output])
-        printAllOutputs(allOutputs)
         updateAlphabetKey(output,guess,alphabet,alphabetKey)
-        printAlphabetKey(alphabet,alphabetKey)
+        possibleWords = calcPossibleWords(possibleWords,guess,output)
         count+=1
+    print(f'{len(possibleWords)}/{len(wordBank)} possible words left')
+    print("possible words: ",possibleWords)
+    printAllOutputs(allOutputs)
+    printAlphabetKey(alphabet,alphabetKey)
+
+    if "".join(answer) not in possibleWords:
+        print("ERROR answer not in possibleWords")
+        exit()
 
     if output==mkList("green",wordLength):
         winPrint()
