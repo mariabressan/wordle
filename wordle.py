@@ -20,7 +20,7 @@ print(f'{colored("yellow", "yellow")} - correct letter, incorrect spot')
 print(f'{colored("red", "red")} - incorrect letter\n')
 
 while count<numTurns+1 and output!=mkList("green",wordLength):
-    print('answer: ', answer)
+    #print('answer: ', answer)
     guess = list(input(f"Guess #{count}: ").lower())
     if isvalid(guess,wordBank,wordLength):
         output = evaluate(guess,answer)
@@ -29,7 +29,7 @@ while count<numTurns+1 and output!=mkList("green",wordLength):
         possibleWords = calcPossibleWords(possibleWords,guess,output)
         count+=1
     print(f'{len(possibleWords)}/{len(wordBank)} possible words left')
-    print("possible words: ",possibleWords)
+    #print("possible words: ",possibleWords)
     printAllOutputs(allOutputs)
     printAlphabetKey(alphabet,alphabetKey)
 

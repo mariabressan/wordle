@@ -1,5 +1,4 @@
 from termcolor import colored
-from collections import Counter
 
 colorStrengthDict = {"white":0,"red":1,"yellow":2,"green":3}
 
