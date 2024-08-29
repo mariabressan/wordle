@@ -40,6 +40,6 @@ while count<numTurns+1 and output!=mkList("green",wordLength):
     if output==mkList("green",wordLength):
         winPrint()
 
-    if count > numTurns:
+    if count > numTurns+1:
         loosePrint(answer)
 

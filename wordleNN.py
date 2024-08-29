@@ -14,7 +14,7 @@ Two initial approaches:
 '''
 
 wordLength, numTurns = 5, 50
-nGames = 1000
+nGames = 20
 #wordBank = np.loadtxt(f"dicts/scrabble{wordLength}LetterWords.txt", dtype=str) 
 wordBank = np.loadtxt(f"dicts/scrabble{wordLength}LetterWords.txt", dtype=str) 
 nTotalWords=len(wordBank)

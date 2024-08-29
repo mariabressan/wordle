@@ -5,10 +5,7 @@ from wordleHelpers import *
 ### Shows valid solutions given info of guess:output ###
 
 info = {     
-    "crane":"rrrrg",   
-    "slide":"ryyrg",   
-    "folie":"rryyg",
-    "title":"rggyg"                
+    "shine":"ryyrg",               
         }             
                
 ########################################################
