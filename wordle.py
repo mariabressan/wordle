@@ -22,6 +22,9 @@ print(f'{colored("red", "red")} - incorrect letter\n')
 while count<numTurns+1 and output!=mkList("green",wordLength):
     #print('answer: ', answer)
     guess = list(input(f"Guess #{count}: ").lower())
+    if guess ==list("give up"):
+        printstr = f"\nYou're cheating! The answer is {''.join(answer)}\n"
+        print(f"{colored(printstr,'red')}")
     if isvalid(guess,wordBank,wordLength):
         output = evaluate(guess,answer)
         allOutputs.append([guess,output])

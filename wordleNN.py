@@ -13,8 +13,8 @@ Two initial approaches:
 2. After running a game, each solution is given the same score, which has to do with the # of guesses it took
 '''
 
-wordLength, numTurns = 5, 50
-nGames = 20
+wordLength, numTurns = 5, 100
+nGames = 500
 #wordBank = np.loadtxt(f"dicts/scrabble{wordLength}LetterWords.txt", dtype=str) 
 wordBank = np.loadtxt(f"dicts/scrabble{wordLength}LetterWords.txt", dtype=str) 
 nTotalWords=len(wordBank)
@@ -73,15 +73,18 @@ for i in range(nGames):
         target[0, predicted_category] = score
         model.fit(X_sample, target, epochs=1, verbose=0)
 
-    printAllOutputs(allOutputs)
+    #printAllOutputs(allOutputs)
     if output!=mkList("green",wordLength) and count!=numTurns+1:
         print(f"last word was {possibleWords} ",end="")
     else:
         count-=1
-    print(f"in {count} guesses")
+    #print(f"in {count} guesses")
     nGuesses[i]=count
+    #print(np.mean(nGuesses))
 
 printout = [np.mean(nGuesses[int(np.linspace(0,nGames,11)[x]):int(np.linspace(0,nGames,11)[x+1])]) for x in range(0,10)]
-print(printout)
-plt.scatter(range(0,10),printout)
+print(np.mean(nGuesses))
+plt.ylabel("# guesses")
+plt.xlabel("training time")
+plt.plot(range(len(nGuesses)),nGuesses)
 plt.show()
